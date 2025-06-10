@@ -1,7 +1,8 @@
 using Microsoft.Win32;
 using System;
 using System.Runtime.InteropServices;
-using QBSDKWrapper;
+using QBSDKWrapper.Utils;
+
 
 #pragma warning disable IDE1006 // Naming Styles
 namespace SessionFramework

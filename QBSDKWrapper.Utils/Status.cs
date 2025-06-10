@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 
-namespace QBSDKWrapper
+namespace QBSDKWrapper.Utils
 {
     public enum ErrorCode
     {
