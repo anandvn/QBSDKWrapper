@@ -30,6 +30,30 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>selfsigned.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
@@ -55,7 +79,6 @@
     <Compile Include="SessionFramework\SessionManager.cs" />
     <Compile Include="SessionFramework\VistaException.cs" />
     <Compile Include="SessionFramework\VistaTools.cs" />
-    <Compile Include="Utilities\Status.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="QBFC15Lib">
@@ -72,6 +95,13 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="readme.md" />
+    <None Include="selfsigned.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QBSDKWrapper.Utils\QBSDKWrapper.Utils.csproj">
+      <Project>{96c8487e-04f0-4ecb-b47f-549a6e1b2368}</Project>
+      <Name>QBSDKWrapper.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

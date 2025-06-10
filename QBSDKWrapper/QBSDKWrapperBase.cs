@@ -18,18 +18,22 @@ namespace QBSDKWrapper
             sessionMgr = SessionManager.getInstance(AppId, AppName);
         }
 
-        public Status Connect(string companyFile)
+        public Status Connect(string companyFile, bool singleUser)
         {
             CompanyFile = companyFile;
             string companydir = Path.GetFileNameWithoutExtension(companyFile);
             string companyfilepath = Path.GetDirectoryName(companyFile);
             AttachDir = companyfilepath + @"\attach\" + companydir + @"\Txn\";
             ErrorCode code;
+
             // One Connect to rule them all
             string message;
             try
             {
-                sessionMgr.beginSession(companyFile);
+                if (singleUser)
+                    sessionMgr.beginSession(companyFile, QBFC15Lib.ENOpenMode.omSingleUser);
+                else
+                    sessionMgr.beginSession(companyFile, QBFC15Lib.ENOpenMode.omMultiUser);
                 message = "Connected to Quickbooks Successfully.";
                 code = ErrorCode.ConnectQBOK;
             }
@@ -70,9 +74,9 @@ namespace QBSDKWrapper
             return new Status(message, code, 0);
         }
 
-        public async Task<Status> ConnectAsync(string companyFile)
+        public async Task<Status> ConnectAsync(string companyFile, bool singleUser = false)
         {
-            return await Task.Run(() => Connect(companyFile));
+            return await Task.Run(() => Connect(companyFile, singleUser));
         }
 
         public void Disconnect()
