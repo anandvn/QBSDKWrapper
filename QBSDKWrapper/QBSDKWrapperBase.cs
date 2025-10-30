@@ -32,9 +32,9 @@ namespace QBSDKWrapper
             try
             {
                 if (singleUser)
-                    sessionMgr.beginSession(companyFile, QBFC15Lib.ENOpenMode.omSingleUser);
+                    sessionMgr.beginSession(companyFile, QBFC16Lib.ENOpenMode.omSingleUser);
                 else
-                    sessionMgr.beginSession(companyFile, QBFC15Lib.ENOpenMode.omMultiUser);
+                    sessionMgr.beginSession(companyFile, QBFC16Lib.ENOpenMode.omMultiUser);
                 message = "Connected to Quickbooks Successfully.";
                 code = ErrorCode.ConnectQBOK;
             }
